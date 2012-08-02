@@ -1,9 +1,8 @@
-
 RDoc available here: http://rubydoc.info/github/dostavro/AM_Liaison/master/frames
 
 In order to test AM Liaison run the following commands from the am_liaison/test directory.
-The following files assume there is an XMPP server installed on the machine. If you want to use
-another XMPP server just change the constants in the beginning of the files.
+The following files assume there is an XMPP server installed on the machine. 
+If you want to use another XMPP server just change the constants in the beginning of the files.
 
 First of all, start a dummy OMF AM which just creates a topic in the
 XMPP server with its name and prints the received messages
