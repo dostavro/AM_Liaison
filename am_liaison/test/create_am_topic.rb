@@ -22,7 +22,7 @@ PUBSUB_CONFIGURE = Blather::Stanza::X.new({
         { :var => "pubsub#publish_model", :value => "open" }]
     })
 
-HOST = 'dsw-laptop'
+HOST = %x{'hostname'}.chomp
 
 class OmfAM
   

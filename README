@@ -1,9 +1,11 @@
 
 RDoc available here: http://rubydoc.info/github/dostavro/AM_Liaison/master/frames
 
-In order to test AM Liaison run the following commands from the am_liaison/test directory
+In order to test AM Liaison run the following commands from the am_liaison/test directory.
+The following files assume there is an XMPP server installed on the machine. If you want to use
+another XMPP server just change the constants in the beginning of the files.
 
-First of all, start a dummy OMF AM which just creates a topic in the local
+First of all, start a dummy OMF AM which just creates a topic in the
 XMPP server with its name and prints the received messages
 - ruby create_am_topic.rb
 
@@ -15,6 +17,7 @@ Then run the script which tests the AM Liaison with the following order:
 5. We actually schedule these tasks which results in the creation of two timers
 6. We cancel the second task before it fires the event
 7. We wait for the first timer to fire the event and send a create message to the dummy OMF AM
+8. After the XMPP event, just stop them with CTRL+C
 
 - ruby -I ../lib/ -I ../../omf_common/lib/ test_am_liaison.rb
 

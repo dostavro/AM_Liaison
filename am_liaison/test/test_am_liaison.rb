@@ -2,6 +2,8 @@
 
 require 'am_liaison'
 
+HOSTNAME = %x{'hostname'}.chomp
+
 def shutdown(am_liaison, omf_am)
   am_liaison.remove_am(omf_am)
   exit
@@ -12,7 +14,7 @@ EM.run do
   am_liaison = AMLiaison.new('sqlite:///tmp/am_liaison.db')
 
   # create an OMF AM
-  omf_am = OmfAM.new('omf_am', "xmpp://dsw-laptop:9090")
+  omf_am = OmfAM.new('omf_am', "xmpp://#{HOSTNAME}:9090")
 
   # list the AMs of Liaison
   puts "AMs List: #{am_liaison.am_list}"
