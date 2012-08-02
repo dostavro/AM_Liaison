@@ -1,0 +1,6 @@
+--title AM Liaison
+--private
+
+omf_*/lib/**/*.rb
+am_liaison/lib/*.rb
+-

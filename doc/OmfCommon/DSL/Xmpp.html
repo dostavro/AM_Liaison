@@ -6,7 +6,7 @@
 <title>
   Module: OmfCommon::DSL::Xmpp
   
-    &mdash; Documentation by YARD 0.8.2.1
+    &mdash; AM
   
 </title>
 
@@ -150,6 +150,30 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#callback_logging-instance_method" title="#callback_logging (instance method)">- (Object) <strong>callback_logging</strong>(*args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provide a new block wrap to automatically log errors.</p>
+</div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
@@ -242,6 +266,28 @@
     <span class="summary_desc"><div class='inline'>
 <p>Shut down XMPP connection.</p>
 </div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#prefix_host-instance_method" title="#prefix_host (instance method)">- (Object) <strong>prefix_host</strong>(host) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -376,6 +422,57 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_affiliations'>affiliations</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pubsub'>pubsub</span><span class='period'>.</span><span class='id identifier rubyid_affiliations'>affiliations</span><span class='lparen'>(</span><span class='id identifier rubyid_prefix_host'>prefix_host</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_callback_logging'>callback_logging</span><span class='lparen'>(</span><span class='id identifier rubyid___method__'>__method__</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="callback_logging-instance_method">
+  
+    - (<tt>Object</tt>) <strong>callback_logging</strong>(*args, &amp;block)  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provide a new block wrap to automatically log errors</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'omf_common/lib/omf_common/dsl/xmpp.rb', line 90</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_callback_logging'>callback_logging</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_m'>m</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OPERATION</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_proc'>proc</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_callback'>callback</span><span class='op'>|</span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='id identifier rubyid_callback'>callback</span> <span class='kw'>if</span> <span class='id identifier rubyid_callback'>callback</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:error?</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_callback'>callback</span><span class='period'>.</span><span class='id identifier rubyid_error?'>error?</span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_m'>m</span><span class='rbrace'>}</span><span class='tstring_content'> SUCCEED</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_callback'>callback</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:result?</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_callback'>callback</span><span class='period'>.</span><span class='id identifier rubyid_result?'>result?</span>
+    <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_callback'>callback</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block'>block</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -616,6 +713,36 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disconnect'>disconnect</span>
   <span class='id identifier rubyid_shutdown'>shutdown</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prefix_host-instance_method">
+  
+    - (<tt>Object</tt>) <strong>prefix_host</strong>(host)  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+99
+100
+101</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'omf_common/lib/omf_common/dsl/xmpp.rb', line 99</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prefix_host'>prefix_host</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='rparen'>)</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>HOST_PREFIX</span><span class='rbrace'>}</span><span class='tstring_content'>.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_host'>host</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -907,7 +1034,7 @@
 </div>
 
     <div id="footer">
-  Generated on Thu Aug  2 16:01:53 2012 by
+  Generated on Thu Aug  2 16:22:52 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>
