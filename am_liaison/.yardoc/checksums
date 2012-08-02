@@ -1,0 +1,4 @@
+lib/task.rb 2fdf09e61fd7123568d12189e95d094faf54de43
+lib/omf_am.rb da7608c411e823fb7f771fd81b08c206102630f4
+lib/am_liaison.rb ca973e03d2ccdb8e3fe21eedd9f225c9ff0d50dc
+lib/abstract_am.rb cfa4968de4eb58f3ec661a2c12258f55a425194e

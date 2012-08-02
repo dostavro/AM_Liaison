@@ -1,0 +1,18 @@
+In order to test AM Liaison run the following commands from the am_liaison/test directory
+
+First of all, start a dummy OMF AM which just creates a topic in the local
+XMPP server with its name and prints the received messages
+- ruby create_am_topic.rb
+
+Then run the script which tests the AM Liaison with the following order:
+1. Creates a new instance of AM Liaison with a database at "/tmp/am_liaison.db"
+2. Creates a new OMF AM with urn same as the topic we created above
+3. Attachs the OMF AM to the list of the AM Liaison
+4. We create 2 tasks in the database of the AM Liaison for execution in 10 and 15 seconds respectively
+5. We actually schedule these tasks which results in the creation of two timers
+6. We cancel the second task before it fires the event
+7. We wait for the first timer to fire the event and send a create message to the dummy OMF AM
+
+- ruby -I ../lib/ -I ../../omf_common/lib/ test_am_liaison.rb
+
+

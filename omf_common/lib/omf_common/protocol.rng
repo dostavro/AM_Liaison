@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<choice ns="http://schema.mytestbed.net/6.0/protocol" xmlns="http://relaxng.org/ns/structure/1.0">
+  <element>
+    <choice>
+      <name>create</name>
+      <name>configure</name>
+    </choice>
+    <attribute name="msg_id"/>
+    <element name="context_id">
+      <text/>
+    </element>
+    <zeroOrMore>
+      <element name="property">
+        <choice>
+          <attribute name="key"/>
+          <element name="key">
+            <text/>
+          </element>
+        </choice>
+        <optional>
+          <choice>
+            <attribute name="type"/>
+            <element name="type">
+              <text/>
+            </element>
+          </choice>
+        </optional>
+        <choice>
+          <element name="value">
+            <text/>
+          </element>
+          <text/>
+        </choice>
+        <optional>
+          <element name="unit">
+            <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="precision">
+            <text/>
+          </element>
+        </optional>
+      </element>
+    </zeroOrMore>
+  </element>
+  <element name="request">
+    <attribute name="msg_id"/>
+    <element name="context_id">
+      <text/>
+    </element>
+    <optional>
+      <element name="publish_to">
+        <text/>
+      </element>
+    </optional>
+    <zeroOrMore>
+      <element name="property">
+        <choice>
+          <attribute name="key"/>
+          <element name="key">
+            <text/>
+          </element>
+        </choice>
+        <optional>
+          <element name="min_value">
+            <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="max_value">
+            <text/>
+          </element>
+        </optional>
+      </element>
+    </zeroOrMore>
+  </element>
+  <element name="inform">
+    <attribute name="msg_id"/>
+    <element name="context_id">
+      <text/>
+    </element>
+    <element name="inform_type">
+      <choice>
+        <value>CREATED</value>
+        <value>FAILED</value>
+        <value>STATUS</value>
+        <value>RELEASED</value>
+        <value>EVENT</value>
+      </choice>
+    </element>
+    <optional>
+      <element name="resource_id">
+        <text/>
+      </element>
+    </optional>
+    <optional>
+      <element name="resource_address">
+        <text/>
+      </element>
+    </optional>
+    <optional>
+      <element name="error_message">
+        <text/>
+      </element>
+    </optional>
+    <zeroOrMore>
+      <element name="property">
+        <choice>
+          <attribute name="key"/>
+          <element name="key">
+            <text/>
+          </element>
+        </choice>
+        <element name="current">
+          <text/>
+        </element>
+        <optional>
+          <element name="target">
+            <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="msg">
+            <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="progress">
+            <text/>
+          </element>
+        </optional>
+      </element>
+    </zeroOrMore>
+  </element>
+  <element name="release">
+    <attribute name="msg_id"/>
+    <element name="context_id">
+      <text/>
+    </element>
+  </element>
+</choice>
