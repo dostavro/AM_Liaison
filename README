@@ -1,3 +1,6 @@
+
+RDoc available here: http://rubydoc.info/github/dostavro/AM_Liaison/master/frames
+
 In order to test AM Liaison run the following commands from the am_liaison/test directory
 
 First of all, start a dummy OMF AM which just creates a topic in the local
